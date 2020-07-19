@@ -1,0 +1,31 @@
+/*
+
+  gulp.task('default', function(){
+    gulp.watch('src/styles/*.css', gulp.series('css')),
+    gulp.watch('src/html/*.html', gulp.series('copyHTML')),
+    gulp.watch('src/js/*.js', gulp.series('scripts')),
+    gulp.watch('src/images/*', gulp.series('imageMIN'));
+  return
+
+
+gulp.task('default', function(){
+	runSequence('sass', 'install-scripts', 'optimize-scripts');
+	gulp.series('clean');
+	gulp.watch('./sources/sass/**/*.+(scss|sass)', gulp.series('sass'));
+	gulp.watch('./sources/js/**/*.js', gulp.series('optimize-scripts'));
+	return
+});
+
+*/
+
+/*
+gulp.task('sass', function() {
+	return gulp.src('./sources/sass/**/*.+(scss|sass)')
+		.pipe(sourcemaps.init())
+		.pipe(sass(SassOptions).on('error', sass.logError))
+		.pipe(autoprefixer({browsers: ['last 4 versions']}))
+		.pipe(csso())
+		.pipe(sourcemaps.write('./maps'))
+		.pipe(gulp.dest('./assets/css'));
+});
+*/

@@ -37,7 +37,7 @@ var unFilesForPack = [
 ];
 
 // The Gulp task for preparing CSS
-gulp.task('sass', function() {
+gulp.task('sass', done => {
 	return gulp.src('./sources/sass/**/*.+(scss|sass)')
 		.pipe(sourcemaps.init())
 		.pipe(sass(SassOptions).on('error', sass.logError))
@@ -45,23 +45,27 @@ gulp.task('sass', function() {
 		.pipe(csso())
 		.pipe(sourcemaps.write('./maps'))
 		.pipe(gulp.dest('./assets/css'));
+	done();
 });
 
+
 // Gulp Task for optimizing JavaScripts
-gulp.task('optimize-scripts', function() {
+gulp.task('optimize-scripts', done => {
 	return gulp.src('./sources/js/**/*.js')
 		.pipe(uglify())
 		.pipe(gulp.dest('./assets/js'));
+	done();
 })
 
 // Gulp Task for installing the required JavaScripts
-gulp.task('install-scripts', function() {
+gulp.task('install-scripts', done => {
 	return gulp.src(ReqJavaScripts)
 		.pipe(gulp.dest('./assets/js'));
+	done();
 });
 
 // Gulp task for packaging the theme into a ZIP file
-gulp.task('package', function() {
+gulp.task('package', done => {
 	var targetDir = 'dist/';
 	var themeName = require('./package.json').name;
 	var filename = themeName + '.zip';
@@ -69,17 +73,23 @@ gulp.task('package', function() {
 	return gulp.src(unFilesForPack)
 		.pipe(zip(filename))
 		.pipe(gulp.dest(targetDir));
+	done();
 });
 
 // Gulp task for cleaning the assets directory
-gulp.task('clean', function() {
+gulp.task('clean', done => {
 	return del.sync(['./assets', './dist']);
+	done();
 });
 
 // The default Gulp task which first does a fresh build and watches for any changes
-gulp.task('default', ['clean'], function() {
-	runSequence('sass', 'install-scripts', 'optimize-scripts');
+gulp.task('default', done => {
 
-	gulp.watch('./sources/sass/**/*.+(scss|sass)', ['sass']);
-	gulp.watch('./sources/js/**/*.js', ['optimize-scripts']);
+	gulp.series('sass', 'install-scripts', 'optimize-scripts', 'clean');
+	gulp.watch('./sources/sass/**/*.+(scss|sass)', gulp.series('sass'));
+	gulp.watch('./sources/js/**/*.js', gulp.series('optimize-scripts'));
+
+  done();
+
 });
+
