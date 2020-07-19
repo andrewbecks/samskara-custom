@@ -1,7 +1,7 @@
 // Navigation Styles
 .navbar-brand {
 	font-weight: 700;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Rubik', sans-serif;
 	color: $primary !important;
 }
 
@@ -10,24 +10,28 @@
 }
 
 .nav-logo {
-	max-height: 20px;
+	max-height: 40px;
 }
 
 .nav-link {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Rubik', sans-serif;
 	font-weight: 600;
 	font-size: 0.9rem;
+}
+
+.footer {
+	background-color: #1985A1 !important;
 }
 
 // Footer styles
 .footer-logo {
 	font-weight: 700;
 	font-size: 2rem;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Rubik', sans-serif;
 	color: white !important;
 	img {
-		max-height: 30px;
-	}
+		max-height: 60px;
+	} 
 }
 
 .copyright-text {
